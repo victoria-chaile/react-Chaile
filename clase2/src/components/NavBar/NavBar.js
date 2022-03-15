@@ -2,12 +2,15 @@ import { Navbar } from 'react-bootstrap/'
 import { Container } from 'react-bootstrap/'
 import { NavDropdown } from 'react-bootstrap/'
 import { Nav } from 'react-bootstrap/'
+import CartWidget from '../CartWidget/CartWidget'
+
+
 
 function NavBar(params) {
     return(
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-        <Navbar.Brand href="#home">Moda Chic</Navbar.Brand>
+        <Navbar.Brand href="#home">Black and White</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -22,10 +25,16 @@ function NavBar(params) {
             </NavDropdown>
             </Nav>
             <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
+            
+            <Nav.Link href="#deets">Contacto</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-                Dank memes
+                Carrito
             </Nav.Link>
+            <Nav.Link>
+                <CartWidget />
+            </Nav.Link>
+            
+            
             </Nav>
         </Navbar.Collapse>
         </Container>
