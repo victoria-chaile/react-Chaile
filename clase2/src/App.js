@@ -6,7 +6,7 @@ import NavBar from './components/NavBar/NavBar';
 import Titulo from './components/titulo/titulo';
 import Input from './components/Input/input';
 import CartWidget from './components/CartWidget/CartWidget';
-import ItemListContainer from './ItemListContainer/ItemListContainer';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
 
 function App() {
