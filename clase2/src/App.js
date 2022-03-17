@@ -7,6 +7,7 @@ import Titulo from './components/titulo/titulo';
 import Input from './components/Input/input';
 import CartWidget from './components/CartWidget/CartWidget';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import ItemCount from './components/ItemCount/ItemCount';
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
       
       <header className="App-header">
       <Input placeholder='Ingrese un producto aqui' ingreso={fnIngreso}/>
+      <br/>
+      <ItemCount />
      
       </header>
     </div>

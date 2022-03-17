@@ -4,7 +4,7 @@ function Input( {placeholder, saludo} ) {
     return(
       <>
         <input placeholder={ placeholder }/>
-        <button onClick={saludo}>Ingresar</button>
+        <button onClick={saludo}>Buscar</button>
       </>
     )
     
