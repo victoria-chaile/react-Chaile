@@ -10,6 +10,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemCount from './components/ItemCount/ItemCount';
 
 
+
 function App() {
   const array = ['b', 'c', 'd']
   let a = 'a'
@@ -26,13 +27,19 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <ItemListContainer greeting = { saludo }/>
       <Titulo tituloProps= { titulo }  />
+      <ItemListContainer greeting = { saludo }/>
+   
+      
+      
       
       <header className="App-header">
+      
       <Input placeholder='Ingrese un producto aqui' ingreso={fnIngreso}/>
       <br/>
+      
       <ItemCount />
+      
      
       </header>
     </div>
