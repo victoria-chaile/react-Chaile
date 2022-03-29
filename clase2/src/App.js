@@ -1,48 +1,46 @@
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.svg';
-import './App.css';
-import NavBar from './components/NavBar/NavBar';
-import Titulo from './components/titulo/titulo';
-import Input from './components/Input/input';
-import CartWidget from './components/CartWidget/CartWidget';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import ItemCount from './components/ItemCount/ItemCount';
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import NavBar from "./components/NavBar/NavBar";
+import Titulo from "./components/titulo/titulo";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 
 function App() {
-  const array = ['b', 'c', 'd']
-  let a = 'a'
-  const newArray =[array]
+  const array = ["b", "c", "d"];
+  let a = "a";
+  const newArray = [array];
   console.log(newArray);
 
-  let titulo = 'Black and White'
-  let saludo = '¡Bienvenidos a todos!'
+  let titulo = "Black and White";
+  let saludo = "¡Bienvenidos a todos!";
 
   const fnIngreso = () => {
-    console.log ('ingresando')
-  }
+    console.log("ingresando");
+  };
 
   return (
-    <div className="App">
-      <NavBar />
-      <Titulo tituloProps= { titulo }  />
-      <ItemListContainer greeting = { saludo }/>
-   
-      
-      
-      
-      <header className="App-header">
-      
-      <Input placeholder='Ingrese un producto aqui' ingreso={fnIngreso}/>
-      <br/>
-      
-      <ItemCount />
-      
-     
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <NavBar />
+        <Titulo tituloProps={titulo} />
+        <Routes>
+          <Route
+            path="/detalle/:detalleId"
+            element={<ItemDetailContainer />}
+          ></Route>
+          <Route
+            path="/"
+            element={<ItemListContainer greeting={saludo} />}
+          ></Route>
+          <Route
+            path="/categoria/:categoriaId"
+            element={<ItemListContainer />}
+          ></Route>
+          <Route path="/*" element={<Navigate to='/' />}></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
