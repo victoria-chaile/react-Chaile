@@ -19,7 +19,7 @@ export default function ItemDetail({p}) {
             <h5 class="card-title">{p.name}</h5>
             <p class="card-text">{"Disponible en varios colores" + p.descripcion}</p>
             <p class="card-text">{"Tu consulta no molesta!" + p.descripcion}</p>
-            <ItemCount/>
+            <ItemCount prod={p}/>
           </div>
         </div>
       </div>

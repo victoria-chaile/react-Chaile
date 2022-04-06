@@ -2,8 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../Context/cartContext';
 
-const ItemCount = () => {
+const ItemCount = ({prod}) => {
+  const { addtoCart }=useCartContext()
   const valorInicial = 1; 
   const stock = 10; 
 
@@ -12,6 +14,7 @@ const ItemCount = () => {
 
   const onAdd = (numero) => {
    setProductoAgregado(true);
+   addtoCart({...prod, cantidad : numero})
   };
 
   const addProduct = (num) => {
