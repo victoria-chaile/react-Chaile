@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import React from "react";
 import CartContextProvider from "./components/Context/cartContext";
+import CartContainer from "./components/CartContainer/CartContainer";
 
 function App() {
   //const obj= useContext(contextApp);
@@ -43,7 +44,7 @@ function App() {
               path="/categoria/:categoriaId"
               element={<ItemListContainer />}
             ></Route>
-            <Route path="/carrito"></Route>
+            <Route path="/carrito" element={<CartContainer />}></Route>
             <Route path="/*" element={<Navigate to="/" />}></Route>
           </Routes>
         </CartContextProvider>
@@ -53,5 +54,3 @@ function App() {
 }
 
 export default App;
-
-

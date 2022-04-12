@@ -3,8 +3,11 @@ import { Container } from "react-bootstrap/";
 import { Nav } from "react-bootstrap/";
 import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
+import { useCartContext } from "../Context/cartContext";
 
 function NavBar(params) {
+  const { totalCantidad } = useCartContext();
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -28,15 +31,16 @@ function NavBar(params) {
             </NavLink>
           </Nav>
           <Nav>
-            <NavLink className="navbar-text text-light" to="/contacto">
-              <p>Contacto &nbsp;</p>
-            </NavLink>
             <NavLink className="navbar-text text-light" to="/carrito">
-              <p>Carrito</p>
+              <div className="row">
+                <div className="col">
+                  <p>{totalCantidad ? totalCantidad : null}</p>
+                </div>
+                <div className="col">
+                  <CartWidget />
+                </div>
+              </div>
             </NavLink>
-            <Nav.Link>
-              <CartWidget />
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
