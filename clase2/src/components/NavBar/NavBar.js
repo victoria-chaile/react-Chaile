@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useCartContext } from "../Context/cartContext";
 
 function NavBar(params) {
-  const { totalquantity } = useCartContext();
+  const { totalQuantity } = useCartContext();
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -34,7 +34,7 @@ function NavBar(params) {
             <NavLink className="navbar-text text-light" to="/carrito">
               <div className="row">
                 <div className="col">
-                  <p>{totalquantity ? totalquantity : null}</p>
+                  <p>{totalQuantity ? totalQuantity : null}</p>
                 </div>
                 <div className="col">
                   <CartWidget />

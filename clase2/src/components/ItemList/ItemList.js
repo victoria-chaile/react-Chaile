@@ -1,38 +1,51 @@
-import React, { Component, useEffect, useState } from 'react'
-import Item from '../Item/Item'
-import {getFech} from '../Helpers/getFech'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import {
+  collection,
+  getFirestore,
+  getDocs,
+  where,
+  query,
+} from "firebase/firestore";
+import Item from "../Item/Item";
 
-export default function ItemList () {
-    const [productos, setProductos] = useState([])
-    const{categoriaId}= useParams()
+export default function ItemList() {
+  const [products, setProducts] = useState([]);
+  const { categoryId } = useParams();
 
-    useEffect (()=>{
-    if (categoriaId) {
-      getFech
-      .then(resp => setProductos(resp.filter(item=>item.categoria===categoriaId)))
-      .catch (err => console.log(err))
-      console.log("Filtra"); 
-     
-    }else{
-      getFech
-      .then(resp => setProductos(resp))
-      .catch (err => console.log(err)) 
-      console.log(" No filtra");
+  useEffect(() => {
+    if (categoryId) {
+      const querydb = getFirestore();
+      const queryCollection = collection(querydb, "productos");
+      const queryFilter = query(
+        queryCollection,
+        where("category", "==", categoryId)
+      );
+      getDocs(queryFilter).then((resp) =>
+        setProducts(
+          resp.docs.map((product) => ({ id: product.id, ...product.data() }))
+        )
+      );
+    } else {
+      const querydb = getFirestore();
+      const queryCollection = collection(querydb, "productos");
+      getDocs(queryCollection).then((resp) =>
+        setProducts(
+          resp.docs.map((product) => ({ id: product.id, ...product.data() }))
+        )
+      );
     }
-    },[categoriaId])
-    
+  }, [categoryId]);
 
-    console.log(categoriaId)
-    console.log(productos)
-   
-    return (
-      <div>
-            <div className="row"> 
-            {productos.map((producto)=><div className="col">{<Item producto={producto}/>}</div>)} 
-             </div>
+  return (
+    <div>
+      <div className="row">
+        {products.map((prod) => (
+          <div key={prod.id} className="col">
+            {<Item product={prod} />}
+          </div>
+        ))}
       </div>
-    )
-  }
-
-
+    </div>
+  );
+}

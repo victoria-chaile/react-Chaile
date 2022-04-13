@@ -1,26 +1,25 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getItem } from "../Helpers/getFech";
 import ItemDetail from "../ItemDetail/ItemDetail";
+import {
+  doc,
+  getDoc,
+  getFirestore,
+} from "firebase/firestore";
 
 export default function ItemDetailContainer() {
-  const [producto, setProducto] = useState(null);
-  const{detalleId}= useParams()
+  const [product, setProduct] = useState(null);
+  const {detailId} = useParams()
 
   useEffect(() => {
-    getItem(detalleId)
-      .then((resp) => setProducto(resp))
-      .catch((err) => console.log(err))
-      .finally(() => console.log("Al ultimo"));
-  }, []);
-
-  console.log("testing " ,producto);
-
+      const querydb = getFirestore()
+      const queryProd = doc(querydb, 'productos', detailId)
+  
+      getDoc(queryProd)
+      .then(resp => setProduct( {  id: resp.id, ...resp.data()  } ))
+  
+  },[detailId])
   return (
-    <div>
-      {
-        producto === null? null : <ItemDetail key={1} p={producto} />
-      }
-    </div>
+    <div>{product === null ? null : <ItemDetail key={1} product={product} />}</div>
   );
 }
