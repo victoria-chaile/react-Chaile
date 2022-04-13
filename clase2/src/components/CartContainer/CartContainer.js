@@ -12,16 +12,16 @@ export default function CartContainer() {
       ) : (
         <div className="row">
           <div className="col">
-            {cartList.map((producto) => (
-              <div>{<Cart producto={producto} />}</div>
+            {cartList.map((product) => (
+              <div>{<Cart key={product.id} product={product} />}</div>
             ))}
           </div>
           <div className="col">
-            <div class="card-body">
+            <div className="card-body">
               <h3 className="card-text">{"Valor total: $" + total}</h3>
               <button
                 type="button"
-                class="btn btn-dark"
+                className="btn btn-dark"
                 onClick={() => removetoCart(true, null)}
               >
                 Vaciar Carrito

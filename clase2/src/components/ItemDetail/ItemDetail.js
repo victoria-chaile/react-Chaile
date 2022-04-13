@@ -1,29 +1,32 @@
 import React from "react";
 import ItemCount from "../ItemCount/ItemCount";
 
-export default function ItemDetail({p}) {
-  let path = require(`../../../public/img/${p.src}`)
-  return (
-  <div class='center-block'>
-    <div class="card col-xs-12" style={{ width: "35rem" }}>
-      <div class="row">
-        <div class="col">
-          <img
-            src={path}
-            class="card-img-top "
-            alt="..."
-          />
-        </div>
-        <div class="col col-xs-12">
-          <div class="card-body">
-            <h5 class="card-title">{p.name}</h5>
-            <p class="card-text">{"Disponible en varios colores" + p.descripcion}</p>
-            <p class="card-text">{"Tu consulta no molesta!" + p.descripcion}</p>
-            <ItemCount prod={p}/>
+export default function ItemDetail({product}) {
+  return ( 
+    <div className="center-block">
+      <div className="card col-xs-12" style={{ width: "35rem" }}>
+        <div className="row">
+          <div className="col">
+            <img
+              src={require(`../../../public/img/${product.src}`)}
+              className="card-img-top "
+              alt="..."
+            />
+          </div>
+          <div className="col col-xs-12">
+            <div className="card-body">
+              <h5 className="card-title">{product.name}</h5>
+              <p className="card-text">
+                {"Disponible en varios colores" + product.description}
+              </p>
+              <p className="card-text">
+                {"Tu consulta no molesta!" + product.description}
+              </p>
+              <ItemCount prod={product} />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }

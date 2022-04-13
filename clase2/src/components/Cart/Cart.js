@@ -1,29 +1,29 @@
 import React from "react";
 import { useCartContext } from "../Context/cartContext";
 
-function Cart({ producto }) {
+function Cart({ product }) {
   const { removetoCart } = useCartContext();
   return (
-    <div class="card mb-3" style={{ maxWidth: "540px" }}>
-      <div class="row g-0">
-        <div class="col-md-4">
+    <div className="card mb-3" style={{ maxWidth: "540px" }}>
+      <div className="row g-0">
+        <div className="col-md-4">
           <img
-            src={require("../../../public/img/" + producto.src)}
-            class="img-fluid rounded-start"
+            src={require("../../../public/img/" + product.src)}
+            className="img-fluid rounded-start"
             alt="..."
           />
         </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 className="card-title">{producto.name}</h5>
-            <p className="card-text">{"$" + producto.precio}</p>
+        <div className="col-md-8">
+          <div className="card-body">
+            <h5 className="card-title">{product.name}</h5>
+            <p className="card-text">{"$" + product.price}</p>
             <h3 className="card-text">
-              {"Agregaste " + producto.cantidad + " productos"}
+              {"Agregaste " + product.quantity + " productos"}
             </h3>
             <button
               type="button"
-              onClick={() => removetoCart(false, producto)}
-              class="btn btn-outline-dark"
+              onClick={() => removetoCart(false, product)}
+              className="btn btn-outline-dark"
             >
               Eliminar
             </button>

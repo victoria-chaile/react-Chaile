@@ -1,14 +1,9 @@
-
-function Titulo ({tituloProps}){
-    //const {tituloProps} = props
-    //console.log (props);
-    return(
+function Titulo({ tituloProps }) {
+  return (
     <div className="Titulo">
-        <h1>{tituloProps}</h1>
-        
-
+      <h1>{tituloProps}</h1>
     </div>
-)
+  );
 }
 
-export default Titulo
+export default Titulo;

@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
-import Titulo from "./components/titulo/titulo";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
@@ -9,39 +8,29 @@ import React from "react";
 import CartContextProvider from "./components/Context/cartContext";
 import CartContainer from "./components/CartContainer/CartContainer";
 
+
 function App() {
-  //const obj= useContext(contextApp);
-  ///console.log(obj);
-  const array = ["b", "c", "d"];
-  let a = "a";
-  const newArray = [array];
-  console.log(newArray);
-
-  let titulo = "Black and White";
-  let saludo = "¡Bienvenidos a todos!";
-
-  const fnIngreso = () => {
-    console.log("ingresando");
-  };
+  let title = "Black and White";
+  let greetings = "Productos Disponibles";
 
   return (
     <div className="App">
       <BrowserRouter>
         <CartContextProvider>
           <NavBar />
-          <Titulo tituloProps={titulo} />
+          <title titleprops={title} />
 
           <Routes>
             <Route
-              path="/detalle/:detalleId"
+              path="/detail/:detailId"
               element={<ItemDetailContainer />}
             ></Route>
             <Route
               path="/"
-              element={<ItemListContainer greeting={saludo} />}
+              element={<ItemListContainer greeting={greetings} />}
             ></Route>
             <Route
-              path="/categoria/:categoriaId"
+              path="/category/:categoryId"
               element={<ItemListContainer />}
             ></Route>
             <Route path="/carrito" element={<CartContainer />}></Route>

@@ -1,4 +1,4 @@
-import { Navbar, NavbarBrand } from "react-bootstrap/";
+import { Navbar } from "react-bootstrap/";
 import { Container } from "react-bootstrap/";
 import { Nav } from "react-bootstrap/";
 import CartWidget from "../CartWidget/CartWidget";
@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useCartContext } from "../Context/cartContext";
 
 function NavBar(params) {
-  const { totalCantidad } = useCartContext();
+  const { totalquantity } = useCartContext();
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -19,13 +19,13 @@ function NavBar(params) {
           <Nav className="me-auto">
             <NavLink
               className="navbar-text text-light"
-              to="/categoria/mochilas"
+              to="/category/mochilas"
             >
               <p className="navbar-text text-light">Mochilas &nbsp;</p>
             </NavLink>
             <NavLink
               className="navbar-text text-light"
-              to="/categoria/billeteras"
+              to="/category/billeteras"
             >
               <p className="navbar-text text-light">Billeteras</p>
             </NavLink>
@@ -34,7 +34,7 @@ function NavBar(params) {
             <NavLink className="navbar-text text-light" to="/carrito">
               <div className="row">
                 <div className="col">
-                  <p>{totalCantidad ? totalCantidad : null}</p>
+                  <p>{totalquantity ? totalquantity : null}</p>
                 </div>
                 <div className="col">
                   <CartWidget />
