@@ -11,7 +11,12 @@ function CartContextProvider({ children }) {
 
   const addtoCart = (item) => {
     if (cartList.filter((e) => e.id === item.id).length > 0) {
-      console.log("producto ya agregado");
+      const objIndex = cartList.findIndex((obj) => obj.id === item.id);
+      let temp = cartList;
+      temp[objIndex].quantity = temp[objIndex].quantity + item.quantity;
+      setCartList(temp);
+      setTotal(total + item.price * item.quantity);
+      setTotalQuantity(totalQuantity + item.quantity);
     } else {
       setCartList([...cartList, item]);
       setTotal(total + item.price * item.quantity);
