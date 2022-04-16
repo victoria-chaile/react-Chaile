@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../Context/cartContext";

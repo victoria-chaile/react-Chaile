@@ -1,37 +1,23 @@
-import React from "react";
-import Cart from "../Cart/Cart";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useCartContext } from "../Context/cartContext";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import Cart from "../Cart/Cart";
+import Form from "../Form/Form";
 
 export default function CartContainer() {
   const { cartList, total, removetoCart } = useCartContext();
-  const createOrder = () => {
-    let order = {};
-
-    order.buyer = {
-      name: "Victoria",
-      email: "victoriachaile.a@gmail.com",
-      phone: "6564541386",
-    };
-    order.total = total;
-
-    order.items = cartList.map((cartItem) => {
-      const id = cartItem.id;
-      const title = cartItem.name;
-      const price = cartItem.price * cartItem.quantity;
-
-      return { id, title, price };
-    });
-
-    const db = getFirestore();
-    const queryCollection = collection(db, "orders");
-    addDoc(queryCollection, order).then((resp) => console.log(resp));
-  };
-
+  const [text, setText] = useState("¡No tiene productos agregados!");
   return (
     <div>
       {cartList.length === 0 ? (
-        <h4>¡No tiene productos agregados!</h4>
+        <div>
+          <h4>{text}</h4>
+          <Link to={`/`}>
+            <button className="btn btn-secondary" onClick={() => {}}>
+              Volver a la tienda
+            </button>
+          </Link>
+        </div>
       ) : (
         <div className="row">
           <div className="col">
@@ -49,14 +35,8 @@ export default function CartContainer() {
               >
                 Vaciar Carrito
               </button>
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={() => createOrder()}
-              >
-                Generar Orden
-              </button>
             </div>
+            <Form fnText={setText} fnRemove={removetoCart} />
           </div>
         </div>
       )}

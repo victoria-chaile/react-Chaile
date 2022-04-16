@@ -15,10 +15,13 @@ function CartContextProvider({ children }) {
       let temp = cartList;
       temp[objIndex].quantity = temp[objIndex].quantity + item.quantity;
       setCartList(temp);
-      setTotal(total + item.price * item.quantity);
-      setTotalQuantity(totalQuantity + item.quantity);
+      updateProductStatus();
     } else {
       setCartList([...cartList, item]);
+      updateProductStatus();
+    }
+
+    function updateProductStatus() {
       setTotal(total + item.price * item.quantity);
       setTotalQuantity(totalQuantity + item.quantity);
     }

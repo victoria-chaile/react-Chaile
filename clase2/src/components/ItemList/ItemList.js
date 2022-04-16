@@ -14,22 +14,20 @@ export default function ItemList() {
   const { categoryId } = useParams();
 
   useEffect(() => {
+    const querydb = getFirestore();
+    const queryCollection = collection(querydb, "productos");
     if (categoryId) {
-      const querydb = getFirestore();
-      const queryCollection = collection(querydb, "productos");
       const queryFilter = query(
         queryCollection,
         where("category", "==", categoryId)
       );
-      getDocs(queryFilter).then((resp) =>
-        setProducts(
-          resp.docs.map((product) => ({ id: product.id, ...product.data() }))
-        )
-      );
+      updateProducts(queryFilter);
     } else {
-      const querydb = getFirestore();
-      const queryCollection = collection(querydb, "productos");
-      getDocs(queryCollection).then((resp) =>
+      updateProducts(queryCollection);
+    }
+
+    function updateProducts(query) {
+      getDocs(query).then((resp) =>
         setProducts(
           resp.docs.map((product) => ({ id: product.id, ...product.data() }))
         )
